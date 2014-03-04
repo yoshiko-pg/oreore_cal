@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href='./lib/fullcalendar/fullcalendar.css' rel='stylesheet' />
+<link href='./lib/fullcalendar/fullcalendar.print.css' rel='stylesheet' media='print' />
+<link rel="stylesheet" type="text/css" href="./css/style.css">
+<script src='./lib/jquery/jquery.min.js'></script>
+<script src='./lib/jquery/jquery-ui.custom.min.js'></script>
+<script src='./lib/jquery.cookie.js'></script>
+<script src='./lib/bootstrap/js/bootstrap.min.js'></script>
+<script src='./lib/fullcalendar/fullcalendar.min.js'></script>
+<script src='./js/script.js'></script>
+</head>
+<body>
+	<div id="header">
+		<div id="first" class="w_wide">
+			<h2>1. Set your IDs</h2>
+			<div class="item">
+				<span class="atnd">ATND</span>
+				<input type="text" name="atnd" id="atnd" value="" />
+				<i class="fa"></i>
+			</div>
+			<div class="item">
+				<span class="connpass">Connpass</span>
+				<input type="text" name="connpass" id="connpass" value="" />
+				<i class="fa"></i>
+			</div>
+			<div class="item">
+				<span class="zusaar">Zusaar</span>
+				<input type="text" name="zusaar" id="zusaar" value="" />
+				<i class="fa"></i>
+			</div>
+			<!--
+			<div class="item">
+				<span class="doorkeeper">DoorKeeper</span>
+				<input type="text" name="doorkeeper" id="doorkeeper" value="" disabled="disabled" />
+				<i class="fa"></i>
+			</div>
+			-->
+			<div class="where">
+				<a href="#" id="where_id_link">Where is my ID?</a>
+			</div>
+		</div>
+		<div id="second" class="w_normal">
+			<h2>2. View events</h2>
+			<button id="view" class="btn btn-primary" disabled="disabled">view events</button>
+			<div id="check_result"></div>
+		</div>
+		<div id="third" class="w_normal">
+			<h2>3. Save ID setting</h2>
+			<button id="save" class="btn btn-success" disabled="disabled">save ID setting</button>
+			<div id="save_result"></div>
+		</div>
+		<div id="fourth" class="w_normal">
+			<h2>4. Recommend!</h2>
+			
+		</div>
+
+		<div id="tab"><i class="fa fa-cog"></i>ID setting</div>
+
+		<div id="where_id">
+			<h2>ATND</h2>
+			<p>http://atnd.org/users/[123456]</p>
+			<h2>Connpass</h2>
+			<p>http://connpass.com/user/[username]</p>
+			<h2>Zusaar</h2>
+			<p>http://www.zusaar.com/user/[username]</p>
+		</div>
+	</div>
+
+	<div id="primary">
+		<h1>おれおれ勉強会カレンダー</h1>
+		<p>各イベント開催支援サイトで自分が参加予定のイベントをまとめて見ることができます。<br /></p>
+		<div id='calendar'></div>
+
+		<h1>つくったひと</h1>
+		<p>よしこ</p>
+	</div>
+
+	<div id="loading"><i class="fa fa-spinner fa-spin"></i></div>
+</body>
+</html>

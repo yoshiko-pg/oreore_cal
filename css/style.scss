@@ -1,0 +1,326 @@
+////////////////////////////////////////////////////////////////////////
+// Core variables and mixins
+@import "../lib/sass-bootstrap/variables";
+@import "../lib/sass-bootstrap/mixins";
+
+// Reset../lib/sass-bootstrap/
+@import "../lib/sass-bootstrap/normalize";
+@import "../lib/sass-bootstrap/print";
+
+// Core C../lib/sass-bootstrap/SS
+@import "../lib/sass-bootstrap/scaffolding";
+@import "../lib/sass-bootstrap/type";
+@import "../lib/sass-bootstrap/code";
+@import "../lib/sass-bootstrap/grid";
+@import "../lib/sass-bootstrap/tables";
+@import "../lib/sass-bootstrap/forms";
+@import "../lib/sass-bootstrap/buttons";
+
+// Compon../lib/sass-bootstrap/ents
+@import "../lib/sass-bootstrap/component-animations";
+@import "../lib/sass-bootstrap/glyphicons";
+@import "../lib/sass-bootstrap/dropdowns";
+@import "../lib/sass-bootstrap/button-groups";
+@import "../lib/sass-bootstrap/input-groups";
+@import "../lib/sass-bootstrap/navs";
+@import "../lib/sass-bootstrap/navbar";
+@import "../lib/sass-bootstrap/breadcrumbs";
+@import "../lib/sass-bootstrap/pagination";
+@import "../lib/sass-bootstrap/pager";
+@import "../lib/sass-bootstrap/labels";
+@import "../lib/sass-bootstrap/badges";
+@import "../lib/sass-bootstrap/jumbotron";
+@import "../lib/sass-bootstrap/thumbnails";
+@import "../lib/sass-bootstrap/alerts";
+@import "../lib/sass-bootstrap/progress-bars";
+@import "../lib/sass-bootstrap/media";
+@import "../lib/sass-bootstrap/list-group";
+@import "../lib/sass-bootstrap/panels";
+@import "../lib/sass-bootstrap/wells";
+@import "../lib/sass-bootstrap/close";
+
+// Compon../lib/sass-bootstrap/ents w/ JavaScript
+@import "../lib/sass-bootstrap/modals";
+@import "../lib/sass-bootstrap/tooltip";
+@import "../lib/sass-bootstrap/popovers";
+@import "../lib/sass-bootstrap/carousel";
+
+// Utilit../lib/sass-bootstrap/y classes
+@import "../lib/sass-bootstrap/utilities";
+@import "../lib/sass-bootstrap/responsive-utilities";
+////////////////////////////////////////////////////////////////////////
+@import url('../lib/font-awesome/css/font-awesome.min.css');
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lato Regular'), local('Lato-Regular'), url('../font_tmp/lato.woff') format('woff');
+}
+.lato{ font-family: 'Lato'; }
+////////////////////////////////////////////////////////////////////////
+@mixin cf {
+	zoom: 1;
+
+	&:before,
+	&:after {
+		display: block;
+		height: 0;
+		visibility: hidden;
+		content: "\0020";
+	}
+
+	&:after {
+		clear: both;
+	}
+}
+.cf{ @include cf; }
+@mixin ff{
+	font-family: 'Lato', 'Lucida Grande',
+ 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3',
+ Meiryo, メイリオ, sans-serif;
+}
+////////////////////////////////////////////////////////////////////////
+html, body{
+	@include ff;
+	margin: 0;
+	padding: 0;
+	color: #333333;
+}
+body *{
+	@include ff;
+}
+
+$header_bgc: #94D4CC;
+
+#header{
+	$header_height: 270px;
+	$tab_height: 30px;
+
+	@include cf;
+	width: 100%;
+	height: $header_height;
+	margin-top: 0 - $header_height + 5px;
+	margin-bottom: $tab_height;
+	padding: 0 60px;
+	background-color: $header_bgc;
+	position: relative;
+	color: #FFF;
+	
+	&.open{
+		margin-top: 0;
+	}
+	
+	h2{
+		text-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+		font-size: 24px;
+		margin-bottom: 20px;
+	}
+
+	button{
+		margin-bottom: 15px;
+	}
+	
+	.grid_in_header{
+		float: left;
+	}
+	.w_wide{
+		@extend .grid_in_header;
+		width: 37%;
+	}
+	.w_normal{
+		@extend .grid_in_header;
+		width: 21%;
+	}
+	
+	#first{
+		
+		.item{
+			margin: 10px 0;
+			
+			input[type=text]{
+				width: 160px;
+			}
+
+			i{
+				margin-left: 5px;
+				text-shadow: 1px 1px 0 rgba(255,255,255,0.3);
+			}
+			.fa-check{
+				color: #5CB85C;
+			}
+			.fa-times{
+				color: #D9534F;
+			}
+		}
+		.where{
+			@extend .item;
+			margin-top: 20px;
+		}
+	}
+	#second{
+	}
+
+	#tab{
+		$radius: 7px;
+		position: absolute;
+		right: 10%;
+		bottom: -$tab_height;
+		width: 200px;
+		height: $tab_height;
+		background-color: $header_bgc;
+		cursor: pointer;
+		-webkit-border-radius: 0 0 $radius $radius;
+		        border-radius: 0 0 $radius $radius;
+		text-align: center;
+		line-height: $tab_height - 2px;
+		-webkit-box-shadow: 0 2px 0 rgba(0,0,0,0.15);
+		        box-shadow: 0 2px 0 rgba(0,0,0,0.15);
+		
+		i{
+			margin-right: 5px;
+		}
+	}
+
+	#where_id{
+		$height: 300px;
+		width: 80%;
+		height: $height;
+		padding: 10px;
+		position: absolute;
+		left: 5%;
+		bottom: -$height;
+		background-color: #FFF;
+		border: 1px solid #666;
+		z-index: 10;
+		display: none;
+		
+		h2{
+			color: $header_bgc;
+		}
+	}
+}
+
+#primary{
+	width:900px;
+	margin: 0px auto;
+	
+	h1{
+		@include ff;
+		font-size: 24px;
+	}
+	
+	#calendar {
+		width: 100%;
+		margin-top: 40px;
+		
+		h2{
+			@extend .lato;
+			font-size: 26px;
+			color: $header_bgc;
+			font-weight: bold;
+		}
+
+		.fc-header{
+			margin: 20px 0;
+
+			td{
+				vertical-align: middle;  
+			}
+
+			.fa{
+				color: #777777;
+			}
+		}
+		
+		.fc-button{
+			@extend .btn;
+			height: auto;
+		}
+		.fc-state-default{
+			@extend .btn-default;
+		}
+		.fc-corner-left{
+		}
+		.fc-state-active{
+			@extend .active;
+		}
+
+		.fc-grid .fc-day-number{
+			padding: 2px 6px;
+			float: left;
+		}
+
+		th{
+			background-color: #C0C0C0;
+			color: #FFF;
+			
+			&.fc-sat{
+				background-color: #89B6FF;
+			}
+			&.fc-sun{
+				background-color: #FF7F7F;
+			}
+		}
+
+	}
+}
+
+#loading{
+	$w: 300px;
+	$h: 200px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	width: $w;
+	height: $h;
+	margin:{
+		top: -$h / 2;
+		left: -$w / 2;
+	}
+	background-color: #CCCCCC;
+	text-align: center;
+	padding-top: $w / 2;
+	display: none;
+	
+	i{
+		font-size: 120px;
+		color: #FFF;
+	}
+}
+
+
+///////////////////////////////////////////////////////////////////
+
+.site_icon{
+	$size: 26px;
+	width: 8em;
+	height: $size;
+	-webkit-border-radius: 3px;
+	        border-radius: 3px;
+	font-size: 14px;
+	line-height: $size;
+	display: inline-block;
+	text-align: center;
+	margin-right: 10px;
+	box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
+}
+.atnd{
+	@extend .site_icon;
+	background-color: #CC0033;
+	color: #FFFFFF;
+}
+.doorkeeper{
+	@extend .site_icon;
+	background-color: #79A1B2;
+	color: #FFFFFF;
+}
+.connpass{
+	@extend .site_icon;
+	background-color: #D84722;
+	color: #FFFFFF;
+}
+.zusaar{
+	@extend .site_icon;
+	background-color: #2071C4;
+	color: #FFFFFF;
+}
