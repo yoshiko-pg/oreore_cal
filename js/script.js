@@ -31,7 +31,9 @@ $(function(){
 			}, ym);
 
 		}catch(e){
-			$('#get_event_result').text(e.message);
+			console.log('Error: '+e.message);
+			$('#get_event_result').text('Sorry, fetch events error');
+			$('#loading').hide();
 		}	
 	};
 

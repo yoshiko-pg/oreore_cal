@@ -207,6 +207,12 @@ $header_bgc: #94D4CC;
 	h1{
 		@include ff;
 		font-size: 24px;
+		color: #555555;
+		
+		i{
+			color: $header_bgc;
+			margin-right: 12px;
+		}
 	}
 	
 	#calendar {

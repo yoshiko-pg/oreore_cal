@@ -5160,7 +5160,11 @@ body * {
   margin: 0px auto; }
   #primary h1 {
     font-family: 'Lato', 'Lucida Grande', 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', Meiryo, メイリオ, sans-serif;
-    font-size: 24px; }
+    font-size: 24px;
+    color: #555555; }
+    #primary h1 i {
+      color: #94d4cc;
+      margin-right: 12px; }
   #primary #calendar {
     width: 100%;
     margin-top: 40px; }
@@ -5192,8 +5196,8 @@ body * {
   top: 50%;
   left: 50%;
   width: 300px;
-  height: 200px;
-  margin-top: -100px;
+  height: 250px;
+  margin-top: -125px;
   margin-left: -150px;
   background-color: #888888;
   text-align: center;
@@ -5204,7 +5208,7 @@ body * {
   #loading i {
     font-size: 120px;
     color: #FFF;
-    line-height: 200px; }
+    line-height: 250px; }
 
 .site_icon, .atnd, .doorkeeper, .connpass, .zusaar {
   width: 8em;

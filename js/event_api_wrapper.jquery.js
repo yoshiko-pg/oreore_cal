@@ -77,7 +77,7 @@ var event_api_wrapper = {
 		}).fail(function(){
 
 			var error = new Error();
-			error.message = "Sorry, fetch events error";
+			error.message = "ajax failed";
 			throw error;
 		});
 	}
