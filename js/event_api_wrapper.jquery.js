@@ -45,7 +45,7 @@ var event_api_wrapper = {
 		var ajaxlist = [];
 
 		for(service in ids){
-			if(ids[service].length && this.service_setting[service]){
+			if(ids[service] && this.service_setting[service]){
 				var data = $.extend({}, this.common_param);
 				if(this.service_setting[service].other_param){
 					data = $.extend(data, this.service_setting[service].other_param);

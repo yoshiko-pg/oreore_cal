@@ -85,7 +85,6 @@ $(function(){
 		events: function(start, end, callback) {
 			get_events_from_input(function(events){
 				callback(events);
-				console.log(events);
 			}, format_ym(start, end));
 		},
 		loading: function(bool) {
