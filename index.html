@@ -9,6 +9,7 @@
 <script src='./lib/jquery.cookie.js'></script>
 <script src='./lib/bootstrap/js/bootstrap.min.js'></script>
 <script src='./lib/fullcalendar/fullcalendar.min.js'></script>
+<script src='./js/event_api_wrapper.jquery.js'></script>
 <script src='./js/script.js'></script>
 </head>
 <body>
@@ -43,12 +44,12 @@
 		</div>
 		<div id="second" class="w_normal">
 			<h2>2. View events</h2>
-			<button id="view" class="btn btn-primary" disabled="disabled">view events</button>
-			<div id="check_result"></div>
+			<button id="view" class="btn btn-primary">view events</button>
+			<div id="get_event_result"></div>
 		</div>
 		<div id="third" class="w_normal">
-			<h2>3. Save ID setting</h2>
-			<button id="save" class="btn btn-success" disabled="disabled">save ID setting</button>
+			<h2>3. Save setting</h2>
+			<button id="save" class="btn btn-success">save ID setting</button>
 			<div id="save_result"></div>
 		</div>
 		<div id="fourth" class="w_normal">
@@ -75,6 +76,9 @@
 
 		<h1>つくったひと</h1>
 		<p>よしこ</p>
+
+		<h1>おすすめ</h1>
+		<p>気に入ったらおすすめしてもらえると嬉しいです。</p>
 	</div>
 
 	<div id="loading"><i class="fa fa-spinner fa-spin"></i></div>

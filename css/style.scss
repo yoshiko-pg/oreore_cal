@@ -93,7 +93,7 @@ body *{
 $header_bgc: #94D4CC;
 
 #header{
-	$header_height: 270px;
+	$header_height: 240px;
 	$tab_height: 30px;
 
 	@include cf;
@@ -267,7 +267,7 @@ $header_bgc: #94D4CC;
 
 #loading{
 	$w: 300px;
-	$h: 200px;
+	$h: 250px;
 	position: fixed;
 	top: 50%;
 	left: 50%;
@@ -277,14 +277,17 @@ $header_bgc: #94D4CC;
 		top: -$h / 2;
 		left: -$w / 2;
 	}
-	background-color: #CCCCCC;
+	background-color: #888888;
 	text-align: center;
-	padding-top: $w / 2;
 	display: none;
+	-webkit-border-radius: 10%;
+	        border-radius: 10%;
+	opacity: 0.8;
 	
 	i{
 		font-size: 120px;
 		color: #FFF;
+		line-height: $h;
 	}
 }
 

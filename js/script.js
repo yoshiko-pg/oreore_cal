@@ -1,11 +1,52 @@
 $(function(){
 
-	var get_ids = function(){
+	var get_events_from_input = function(callback, ym){
+
 		var ids = {};
+		ym  = ym || [];
+
 		$('#first .item :text').each(function() {
-			ids[$(this).attr('id')] = $(this).val();
+			var input_id = $(this).attr('id');
+			ids[input_id] = $(this).val() || $.cookie(input_id);
 		});
-		return ids;		
+
+		// 帰ってきたデータをfullcalendar.jsが受け取れる形にフォーマット
+		var format_events = function(events){
+			var formatted = [];
+			var events_length = events.length;
+			for(var i = 0; i < events.length; i++){
+				formatted.push({
+					title: events[i].title,
+					start: events[i].started_at,
+					end: events[i].ended_at,
+					allDay: false
+				});
+			}
+			return formatted;
+		}
+		
+		try{
+			event_api_wrapper.get_events(ids, function(events){
+				callback(format_events(events));
+			}, ym);
+
+		}catch(e){
+			$('#get_event_result').text(e.message);
+		}	
+	};
+
+	var format_ym = function(start, end){
+		var i = new Date(start.getFullYear(), start.getMonth(), 1, 0, 0, 0);
+		var end_time = new Date(end.getFullYear(), end.getMonth(), 1, 0, 0, 0).getTime();
+		var ym_format = function(d){ 
+			return d.getFullYear()+((('0'+(d.getMonth()+1)).slice(-2)));
+		};
+		var ym_array = [];
+
+		for(; i.getTime() <= end_time; i = new Date(i.getFullYear(), i.getMonth()+1, 1, 0, 0, 0)){ 
+			ym_array.push(ym_format(i));
+		}
+		return ym_array;
 	};
 
 	var cal_option = {
@@ -41,22 +82,11 @@ $(function(){
 			day: 'day'
 		},
 		editable: false,
-		viewDisplay: function(view) {
-			var ids = get_ids();
-			$.ajax({
-				url: "get_events.php",
-				dataType: 'json',
-				type: "post",
-				data: {
-					"start": view.start.toString(),
-					"end": view.end.toString(),
-					"ids": ids
-				},
-				success: function(EventSource) {
-					$('#calendar').fullCalendar('removeEvents');
-					$('#calendar').fullCalendar('addEventSource', EventSource);
-				}
-			});
+		events: function(start, end, callback) {
+			get_events_from_input(function(events){
+				callback(events);
+				console.log(events);
+			}, format_ym(start, end));
 		},
 		loading: function(bool) {
 			if (bool) $('#loading').show();
@@ -91,6 +121,19 @@ $(function(){
 	$('#where_id_link').on('click', function(){
 		$('#where_id').toggle();
 		return false;
+	});
+
+	// お気に入りに登録
+	$('#bookmark').on('click', function(){
+		var title = document.title;
+		var url = location.href;
+		if (window.sidebar) {
+		    window.sidebar.addPanel(title, url,"");
+		} else if( document.all ) {
+		    window.external.AddFavorite( url, title);
+		} else if( window.opera && window.print ) {
+		    return true;
+		}
 	});
 
 	// IDが入力されたらボタンを有効化/無効化
