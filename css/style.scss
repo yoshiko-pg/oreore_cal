@@ -121,7 +121,7 @@ html, body{
 	margin: 0;
 	padding: 0;
 	color: #333333;
-	background: #FFF url('./bg.png') repeat left top;
+	background: #FFF url('../img/bg.png') repeat left top;
 }
 body *{
 	@include ff;
@@ -397,3 +397,19 @@ $header_bgc: #94D4CC;
 	}
 }
 
+#where_is_my_id{
+
+	.modal-lg{
+		width: 900px;
+	}
+	
+	h4{
+		font-size: 20px;
+		margin: 15px 10px;
+	}
+
+	.where_id_img{
+		border: 1px solid #DDDDDD;
+		margin-bottom: 30px;
+	}
+}

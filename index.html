@@ -16,7 +16,7 @@
 		<div id="first" class="w_wide">
 			<h2>1. Set your IDs</h2>
 			<div class="item">
-				<span class="atnd">ATND</span>
+				<span class="atnd">ATND beta</span>
 				<input type="text" name="atnd" id="atnd" value="" />
 				<i class="fa"></i>
 			</div>
@@ -38,7 +38,7 @@
 			</div>
 			-->
 			<div class="where">
-				<a href="#" id="where_id_link">Where is my ID?</a>
+				<a href="#" data-toggle="modal" data-target="#where_is_my_id">Where is my ID?</a>
 			</div>
 		</div>
 		<div id="second" class="w_normal">
@@ -58,14 +58,6 @@
 
 		<div id="tab"><i class="fa fa-cog"></i>ID setting</div>
 
-		<div id="where_id">
-			<h2>ATND</h2>
-			<p>http://atnd.org/users/[123456]</p>
-			<h2>Connpass</h2>
-			<p>http://connpass.com/user/[username]</p>
-			<h2>Zusaar</h2>
-			<p>http://www.zusaar.com/user/[username]</p>
-		</div>
 	</div>
 
 	<div id="primary">
@@ -74,12 +66,47 @@
 		<div id='calendar'></div>
 
 		<h1>つくったひと</h1>
-		<p>よしこ</p>
+		<p>
+			よしこ　
+			<a href="https://github.com/yoshiko-pg" target="_blank">github</a>　
+			<a href="https://twitter.com/https://twitter.com/yoshiko_pg" target="_blank">twitter</a>　
+			<a href="https://www.facebook.com/yoshida.maasa" target="_blank">facebook</a>　
+			<a href="http://yoshiko.hatenablog.jp/" target="_blank">hatena blog</a>
+		</p>
 
-		<h1>おすすめ</h1>
-		<p>気に入ったらおすすめしてもらえると嬉しいです。</p>
+		<h2>ひとこと</h2>
+		<p>DoorKeeperもユーザーIDからの参加予定イベント検索に対応してくれたらうれしいですね</p>
 	</div>
 
 	<div id="loading"><i class="fa fa-spinner fa-spin"></i></div>
+
+	<div class="modal fade" id="where_is_my_id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h3 class="modal-title" id="myModalLabel">Where is my ID ?</h3>
+				</div>
+				<div class="modal-body">
+					<h4>ATND (beta)</h4>
+					<div class="where_id_img">
+						<img src="../img/atnd.png" alt="http://atnd.org/users/[user_id]">
+					</div>
+					<h4>Connpass</h4>
+					<div class="where_id_img">
+						<img src="../img/connpass.png" alt="http://connpass.com/user/[user_id]">
+					</div>
+					<h4>Zusaar</h4>
+					<div class="where_id_img">
+						<img src="../img/zusaar.png" alt="http://www.zusaar.com/user/[user_id]">
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 </body>
 </html>
