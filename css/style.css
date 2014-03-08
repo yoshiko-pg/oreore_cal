@@ -5334,11 +5334,17 @@ body * {
     color: #FFF;
     line-height: 250px; }
 
-#where_is_my_id .modal-lg {
-  width: 900px; }
 #where_is_my_id h4 {
   font-size: 20px;
   margin: 15px 10px; }
 #where_is_my_id .where_id_img {
   border: 1px solid #DDDDDD;
   margin-bottom: 30px; }
+
+.modal-lg {
+  width: 900px; }
+
+.desc {
+  display: none; }
+  .desc.disp {
+    display: block; }

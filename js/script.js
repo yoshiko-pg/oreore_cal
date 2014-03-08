@@ -22,7 +22,7 @@ $(function(){
 					end: e.ended_at,
 					allDay: false,
 					popup: '<div class="modal fade" id="event_popup" tabindex="-1" role="dialog" aria-hidden="true">' + 
-							'<div class="modal-dialog">' + 
+							'<div class="modal-dialog modal-lg">' + 
 							'<div class="modal-content">' +
 							'<div class="modal-header">' +
 								'<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' + 
@@ -33,6 +33,8 @@ $(function(){
 								'<p>終了：' + popup_date(e.ended_at) + '</p>' + 
 								'<p>場所：<a href="https://maps.google.com/maps?q='+e.address+'" target="_blank">' + e.address + ' ' + e.place + ' <i class="fa fa-external-link"></i></a></p>' +
 								'<p>' + e.catch + '</p>' + 
+								'<p><a href="#" class="desc_toggle"><i class="fa fa-plus-square-o"></i> 詳細を表示</a></p>' + 
+								'<div class="desc">' + e.description + '</div>' + 
 						   '</div>' +
 						   '<div class="modal-footer">' + 
 								'<button type="button" class="btn btn-default" data-dismiss="modal">Close</button> ' +
@@ -45,13 +47,6 @@ $(function(){
 				});
 			}
 
-			/*
-			// success or failed mark
-			$('#first .item input').each(function(){
-				var icon = $('.fc-event.'+$(this).attr('id')).length ? 'fa-check' : 'fa-times' ;
-				$(this).next('i').addClass(icon);
-			});
-			*/
 			return formatted;
 		}
 		
@@ -126,6 +121,13 @@ $(function(){
 			}
 			$('body').prepend(calEvent.popup);
 			$('#event_popup').modal('toggle');
+			$('.desc_toggle').on('click', function(){
+				$('.desc').toggleClass('disp');
+				$('.desc_toggle i')
+				.toggleClass('fa-plus-square-o')
+				.toggleClass('fa-minus-square-o');
+				return false;
+			});
 		},
 		dayClick: function(date, allDay, jsEvent, view) {
 			if (view.name !== 'agendaDay') {

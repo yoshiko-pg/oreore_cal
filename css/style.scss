@@ -398,10 +398,6 @@ $header_bgc: #94D4CC;
 }
 
 #where_is_my_id{
-
-	.modal-lg{
-		width: 900px;
-	}
 	
 	h4{
 		font-size: 20px;
@@ -411,5 +407,17 @@ $header_bgc: #94D4CC;
 	.where_id_img{
 		border: 1px solid #DDDDDD;
 		margin-bottom: 30px;
+	}
+}
+
+.modal-lg{
+	width: 900px;
+}
+
+.desc{
+	display: none;
+	
+	&.disp{
+		display: block;
 	}
 }
