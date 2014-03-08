@@ -76,11 +76,15 @@ var event_api_wrapper = {
 
 			var events = [];
 
-			for (var i = 0; i < arguments.length; i++) {
-				events = events.concat( 
-					arguments[i][0].events || 
-					arguments[i][0].event
-				);
+			if(ajaxlist.length === 1){
+				events = arguments[0].events || arguments[0].event;
+
+			}else{
+				for (var i = 0; i < arguments.length; i++) {
+					events = events.concat( 
+						arguments[i][0].events || arguments[i][0].event
+					);
+				}
 			}
 
 			callback(events);

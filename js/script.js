@@ -115,9 +115,12 @@ $(function(){
 			day: 'day'
 		},
 		editable: false,
-		//events: ,
+		events: function(start, end, callback) {
+			get_events_from_input(function(events){
+				callback(events);
+			}, format_ym(start, end));
+		},
 		eventClick: function(calEvent, jsEvent) {
-
 			if($('#event_popup').size()){
 				$('#event_popup').remove();
 			}
@@ -164,42 +167,55 @@ $(function(){
 		return false;
 	});
 
-	// view events
-	$('#view').click(function(event) {
-		$('#calendar')
-		.fullCalendar('removeEvents')
-		.fullCalendar('addEventSource', function(start, end, callback) {
-			get_events_from_input(function(events){
-				callback(events);
-			}, format_ym(start, end));
-		});
-	});
-
-	// ID入力欄を回す
-	// ・IDのCookieがあれば入力
-	$('#first .item :text').each(function() {
-		var id = $.cookie($(this).attr('id'));
-		if(id) $(this).val(id);
+	// イベント表示バインド
+	$('#view').click(function() {
+		$('#calendar').fullCalendar('refetchEvents');
 	});
 
 	// イベント表示
 	$('#view').click();
 	
 	// IDの保存/削除
+	var cookie_btn_toggle = function(flag){
+
+		var notEmpty = function(){ return this.value.length !== 0; }
+
+		// Cookieをセット
+		if(flag){ 
+			var cookie_edit = function(){
+				$.cookie($(this).attr('id'), $(this).val());
+			};
+			$('#save').removeClass('btn-success').addClass('btn-danger').text('delete ID setting');
+
+		// Cookieを削除
+		}else{ 
+			var cookie_edit = function(){
+				$.removeCookie($(this).attr('id'));
+				$(this).val('');
+			};
+			$('#save').removeClass('btn-danger').addClass('btn-success').text('save ID setting');
+		}
+
+		$('#first .item :text').filter(notEmpty).each(cookie_edit);
+	}
+
 	$('#save').click(function(){
-		$('#first .item :text').filter(notEmpty).each(function() {
-			$.cookie($(this).attr('id'), $(this).val());
-		});
-		$(this).attr('id', 'unsave').removeClass('btn-success').addClass('btn-danger').text('delete ID setting');
+		cookie_btn_toggle($(this).hasClass('btn-success'));
+	});	
+
+	// Cookieがあれば入力して、ボタンをCookie削除に変更
+	var cookie_flag = false;
+	$('#first .item :text').each(function() {
+		var id = $.cookie($(this).attr('id'));
+		if(id){
+			$(this).val(id);
+			cookie_flag = true;
+		}
 	});
-	$('#unsave').click(function(){
-		$('#first .item :text').filter(notEmpty).each(function() {
-			$.removeCookie($(this).attr('id'));
-			$(this).val('');
-		});
-		$(this).attr('id', 'save').removeClass('btn-danger').addClass('btn-success').text('save ID setting');
-	});
-	
+	cookie_btn_toggle(cookie_flag);
+
+	// Cookieがなければ入力欄を表示
+	if(!cookie_flag) $('#tab').click();
 	
 });
 
