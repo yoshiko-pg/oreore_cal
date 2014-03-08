@@ -371,6 +371,25 @@ $header_bgc: #94D4CC;
 	}
 }
 
+#prof_img{
+	width: 16px;
+	margin-right: 5px;
+}
+
+#footer{
+	margin-top: 50px;
+	background-color: $header_bgc;
+	padding: 30px;
+	text-align: center;
+	p{
+		color: #FFF;
+		line-height: 2;
+		&.copyright{
+			margin-bottom: 15px;
+		}
+	}
+}
+
 #loading{
 	$w: 300px;
 	$h: 250px;

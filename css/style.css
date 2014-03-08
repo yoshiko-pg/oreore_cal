@@ -5315,6 +5315,21 @@ body * {
         border-radius: 3px;
         padding: 5px; }
 
+#prof_img {
+  width: 16px;
+  margin-right: 5px; }
+
+#footer {
+  margin-top: 50px;
+  background-color: #94d4cc;
+  padding: 30px;
+  text-align: center; }
+  #footer p {
+    color: #FFF;
+    line-height: 2; }
+    #footer p.copyright {
+      margin-bottom: 15px; }
+
 #loading {
   position: fixed;
   top: 50%;
