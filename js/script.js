@@ -44,12 +44,19 @@ $(function(){
 					className: e.service
 				});
 			}
+
+			/*
+			// success or failed mark
+			$('#first .item input').each(function(){
+				var icon = $('.fc-event.'+$(this).attr('id')).length ? 'fa-check' : 'fa-times' ;
+				$(this).next('i').addClass(icon);
+			});
+			*/
 			return formatted;
 		}
 		
 		try{
 			event_api_wrapper.get_events(ids, function(events){
-				console.log(events); // TMP
 				callback(format_events(events));
 			}, ym);
 
@@ -108,11 +115,7 @@ $(function(){
 			day: 'day'
 		},
 		editable: false,
-		events: function(start, end, callback) {
-			get_events_from_input(function(events){
-				callback(events);
-			}, format_ym(start, end));
-		},
+		//events: ,
 		eventClick: function(calEvent, jsEvent) {
 
 			if($('#event_popup').size()){
@@ -121,23 +124,16 @@ $(function(){
 			$('body').prepend(calEvent.popup);
 			$('#event_popup').modal('toggle');
 		},
-		loading: function(bool) {
-			if (bool) $('#loading').show();
-			else $('#loading').hide();
-		},
 		dayClick: function(date, allDay, jsEvent, view) {
 			if (view.name !== 'agendaDay') {
 				$('#calendar').fullCalendar('changeView', 'agendaDay').fullCalendar('gotoDate', date.getFullYear(), date.getMonth(), date.getDate());
 			}
+		},
+		loading: function(bool) {
+			if (bool) $('#loading').show();
+			else $('#loading').hide();
 		}
 	};
-
-	// ID入力エリアの表示非表示
-	$('#tab').on('click', function(){
-		var header = $('#header');
-		var margin = (header.css('margin-top') === '0px' ? 0-header.height()+5 : 0);
-		header.animate({marginTop: margin}, 300);
-	});
 
 	// カレンダーの表示
 	$('#calendar').fullCalendar(cal_option);
@@ -155,83 +151,39 @@ $(function(){
 		});
 	});
 
+	// ID入力エリアの表示非表示
+	$('#tab').on('click', function(){
+		var header = $('#header');
+		var margin = (header.css('margin-top') === '0px' ? 0-header.height()+5 : 0);
+		header.animate({marginTop: margin}, 300);
+	});
+
 	// ID場所ヘルプの表示
 	$('#where_id_link').on('click', function(){
 		$('#where_id').toggle();
 		return false;
 	});
 
-	// お気に入りに登録
-	$('#bookmark').on('click', function(){
-		var title = document.title;
-		var url = location.href;
-		if (window.sidebar) {
-		    window.sidebar.addPanel(title, url,"");
-		} else if( document.all ) {
-		    window.external.AddFavorite( url, title);
-		} else if( window.opera && window.print ) {
-		    return true;
-		}
-	});
-
-	// IDが入力されたらボタンを有効化/無効化
-	var notEmpty = function(){ return this.value.length !== 0; };
-	$('#first .item input:text').keyup(function(event) {
-		// 入力があれば
-		if($('#first .item :text').filter(notEmpty).length){
-			$('#check').removeAttr('disabled');
-		}else{
-			$('#check').attr('disabled', 'disabled');
-		}
-	});
-
-	// アカウントチェック
-	$('#check').click(function(event) {
-		$(this).after('<i class="fa fa-spinner fa-spin"></i>');
-		var ids = {};
-		$('#first .item :text').each(function() {
-			ids[$(this).attr('id')] = $(this).val();
-		});
-		$.ajax({
-			url: '/check_accounts.php',
-			type: 'POST',
-			dataType: 'json',
-			data: {'ids':ids},
-		})
-		.done(function(res) {
-			$('#check_result').text('checked!');
-			for(key in res){
-				if($('#first .item input#'+key).length){
-					var icon = res[key] ? 'fa-check' : 'fa-times' ;
-					$('#first .item input#'+key).next('i').addClass(icon);
-				}
-			}
-			$('#view, #save').removeAttr('disabled');
-		})
-		.fail(function(res) {
-			$('#check_result').text('sorry, check is failed...');
-			$('#view, #save').attr('disabled','disabled');
-		})
-		.always(function(){
-			$('#check').next('i').remove();
-		});
-	});
-
-	// イベントを取得して表示
+	// view events
 	$('#view').click(function(event) {
-		$.ajax({
-			url: '/get_events.php',
-			type: 'POST',
-			dataType: 'json',
-			data: {param1: 'value1'},
-		})
-		.done(function(res) {
-			alert(res.events);
-		})
-		.fail(function() {
-			$('#tab').click();
+		$('#calendar')
+		.fullCalendar('removeEvents')
+		.fullCalendar('addEventSource', function(start, end, callback) {
+			get_events_from_input(function(events){
+				callback(events);
+			}, format_ym(start, end));
 		});
 	});
+
+	// ID入力欄を回す
+	// ・IDのCookieがあれば入力
+	$('#first .item :text').each(function() {
+		var id = $.cookie($(this).attr('id'));
+		if(id) $(this).val(id);
+	});
+
+	// イベント表示
+	$('#view').click();
 	
 	// IDの保存/削除
 	$('#save').click(function(){
@@ -247,17 +199,11 @@ $(function(){
 		});
 		$(this).attr('id', 'save').removeClass('btn-danger').addClass('btn-success').text('save ID setting');
 	});
-
-	// ID入力欄を回す
-	// ・IDのCookieがあれば入力
-	$('#first .item :text').each(function() {
-		var id = $.cookie($(this).attr('id'));
-		if(id) $(this).val(id);
-	});
-	$('#view').click();
+	
 	
 });
 
+// modal用の日付フォーマット
 var popup_date = function(date){
 	if(typeof date !== 'Date') date = new Date(date);
 	var y = date.getFullYear();
