@@ -176,7 +176,7 @@ $(function(){
 	$('#view').click();
 	
 	// IDの保存/削除
-	var cookie_btn_toggle = function(flag){
+	var cookie_btn_toggle = function(flag, unedit){
 
 		var notEmpty = function(){ return this.value.length !== 0; }
 
@@ -196,7 +196,7 @@ $(function(){
 			$('#save').removeClass('btn-danger').addClass('btn-success').text('save ID setting');
 		}
 
-		$('#first .item :text').filter(notEmpty).each(cookie_edit);
+		if(!unedit) $('#first .item :text').filter(notEmpty).each(cookie_edit);
 	}
 
 	$('#save').click(function(){
@@ -211,12 +211,17 @@ $(function(){
 			$(this).val(id);
 			cookie_flag = true;
 		}
+		$(this).on('keydown', function(){
+			if($(this).val() !== $.cookie($(this).attr('id'))){
+				cookie_btn_toggle(false, true);
+			}
+		})
 	});
 	cookie_btn_toggle(cookie_flag);
 
 	// Cookieがなければ入力欄を表示
 	if(!cookie_flag) $('#tab').click();
-	
+		
 });
 
 // modal用の日付フォーマット
