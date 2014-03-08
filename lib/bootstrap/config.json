@@ -360,14 +360,19 @@
     "@component-offset-horizontal": "180px"
   },
   "css": [
+    "type.less",
     "tables.less",
     "forms.less",
-    "buttons.less"
+    "buttons.less",
+    "button-groups.less",
+    "input-groups.less",
+    "badges.less",
+    "alerts.less",
+    "modals.less"
   ],
   "js": [
     "alert.js",
     "button.js",
-    "tooltip.js",
-    "popover.js"
+    "modal.js"
   ]
 }

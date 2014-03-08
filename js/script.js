@@ -15,11 +15,33 @@ $(function(){
 			var formatted = [];
 			var events_length = events.length;
 			for(var i = 0; i < events.length; i++){
+				var e = events[i];
 				formatted.push({
-					title: events[i].title,
-					start: events[i].started_at,
-					end: events[i].ended_at,
-					allDay: false
+					title: e.title,
+					start: e.started_at,
+					end: e.ended_at,
+					allDay: false,
+					popup: '<div class="modal fade" id="event_popup" tabindex="-1" role="dialog" aria-hidden="true">' + 
+							'<div class="modal-dialog">' + 
+							'<div class="modal-content">' +
+							'<div class="modal-header">' +
+								'<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' + 
+								'<h4 class="modal-title">'+e.title+'</h4>' +
+							'</div>' +
+							'<div class="modal-body">' + 
+								'<p>開始：' + popup_date(e.started_at) + '</p>' + 
+								'<p>終了：' + popup_date(e.ended_at) + '</p>' + 
+								'<p>場所：<a href="https://maps.google.com/maps?q='+e.address+'" target="_blank">' + e.address + ' ' + e.place + ' <i class="fa fa-external-link"></i></a></p>' +
+								'<p>' + e.catch + '</p>' + 
+						   '</div>' +
+						   '<div class="modal-footer">' + 
+								'<button type="button" class="btn btn-default" data-dismiss="modal">Close</button> ' +
+								'<a href="'+e.event_url+'" target="_blank" class="btn btn-primary">Open event page <i class="fa fa-external-link"></i></button>' +
+							'</div>' + 
+							'</div>' + 
+							'</div>' + 
+						'</div>',
+					className: e.service
 				});
 			}
 			return formatted;
@@ -27,6 +49,7 @@ $(function(){
 		
 		try{
 			event_api_wrapper.get_events(ids, function(events){
+				console.log(events); // TMP
 				callback(format_events(events));
 			}, ym);
 
@@ -88,6 +111,14 @@ $(function(){
 			get_events_from_input(function(events){
 				callback(events);
 			}, format_ym(start, end));
+		},
+		eventClick: function(calEvent, jsEvent) {
+
+			if($('#event_popup').size()){
+				$('#event_popup').remove();
+			}
+			$('body').prepend(calEvent.popup);
+			$('#event_popup').modal('toggle');
 		},
 		loading: function(bool) {
 			if (bool) $('#loading').show();
@@ -220,3 +251,15 @@ $(function(){
 	$('#view').click();
 	
 });
+
+var popup_date = function(date){
+	if(typeof date !== 'Date') date = new Date(date);
+	var y = date.getFullYear();
+	var m = date.getMonth() + 1;
+	var d = date.getDate();
+	var w = date.getDay();
+	var h = date.getHours();
+	var i = date.getMinutes();
+	var week = ['日', '月', '火', '水', '木', '金', '土'];
+	return y+'年'+m+'月'+d+'日（'+week[w]+'）'+h+':'+(('0'+i).slice(-2));
+};

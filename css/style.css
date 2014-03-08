@@ -5076,7 +5076,8 @@ html, body {
   font-family: 'Lato', 'Lucida Grande', 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', Meiryo, メイリオ, sans-serif;
   margin: 0;
   padding: 0;
-  color: #333333; }
+  color: #333333;
+  background: white url("./bg.png") repeat left top; }
 
 body * {
   font-family: 'Lato', 'Lucida Grande', 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', Meiryo, メイリオ, sans-serif; }
@@ -5123,6 +5124,58 @@ body * {
       color: #5CB85C; }
     #header #first .item .fa-times, #header #first .where .fa-times {
       color: #D9534F; }
+    #header #first .item .atnd, #header #first .where .atnd {
+      width: 8em;
+      height: 26px;
+      -webkit-border-radius: 3px;
+      border-radius: 3px;
+      font-size: 14px;
+      line-height: 26px;
+      display: inline-block;
+      text-align: center;
+      margin-right: 10px;
+      box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
+      background-color: #CC0033;
+      color: #FFFFFF; }
+    #header #first .item .doorkeeper, #header #first .where .doorkeeper {
+      width: 8em;
+      height: 26px;
+      -webkit-border-radius: 3px;
+      border-radius: 3px;
+      font-size: 14px;
+      line-height: 26px;
+      display: inline-block;
+      text-align: center;
+      margin-right: 10px;
+      box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
+      background-color: #79A1B2;
+      color: #FFFFFF; }
+    #header #first .item .connpass, #header #first .where .connpass {
+      width: 8em;
+      height: 26px;
+      -webkit-border-radius: 3px;
+      border-radius: 3px;
+      font-size: 14px;
+      line-height: 26px;
+      display: inline-block;
+      text-align: center;
+      margin-right: 10px;
+      box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
+      background-color: #D84722;
+      color: #FFFFFF; }
+    #header #first .item .zusaar, #header #first .where .zusaar {
+      width: 8em;
+      height: 26px;
+      -webkit-border-radius: 3px;
+      border-radius: 3px;
+      font-size: 14px;
+      line-height: 26px;
+      display: inline-block;
+      text-align: center;
+      margin-right: 10px;
+      box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
+      background-color: #2071C4;
+      color: #FFFFFF; }
   #header #first .where {
     margin-top: 20px; }
   #header #tab {
@@ -5183,6 +5236,8 @@ body * {
     #primary #calendar .fc-grid .fc-day-number {
       padding: 2px 6px;
       float: left; }
+    #primary #calendar .fc-content {
+      background: #FFF; }
     #primary #calendar th {
       background-color: #C0C0C0;
       color: #FFF; }
@@ -5190,6 +5245,75 @@ body * {
         background-color: #89B6FF; }
       #primary #calendar th.fc-sun {
         background-color: #FF7F7F; }
+    #primary #calendar .fc-event {
+      background-color: transparent;
+      border: none;
+      color: #666;
+      cursor: pointer; }
+      #primary #calendar .fc-event.atnd:before {
+        width: 8em;
+        height: 18px;
+        -webkit-border-radius: 3px;
+        border-radius: 3px;
+        font-size: 14px;
+        line-height: 18px;
+        display: inline-block;
+        text-align: center;
+        margin-right: 10px;
+        box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
+        width: 1.7em;
+        font-size: 12px;
+        margin-right: 3px;
+        background-color: #CC0033;
+        color: #FFFFFF;
+        content: 'A'; }
+      #primary #calendar .fc-event.connpass:before {
+        width: 8em;
+        height: 18px;
+        -webkit-border-radius: 3px;
+        border-radius: 3px;
+        font-size: 14px;
+        line-height: 18px;
+        display: inline-block;
+        text-align: center;
+        margin-right: 10px;
+        box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
+        width: 1.7em;
+        font-size: 12px;
+        margin-right: 3px;
+        background-color: #D84722;
+        color: #FFFFFF;
+        content: 'C'; }
+      #primary #calendar .fc-event.zusaar:before {
+        width: 8em;
+        height: 18px;
+        -webkit-border-radius: 3px;
+        border-radius: 3px;
+        font-size: 14px;
+        line-height: 18px;
+        display: inline-block;
+        text-align: center;
+        margin-right: 10px;
+        box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
+        width: 1.7em;
+        font-size: 12px;
+        margin-right: 3px;
+        background-color: #2071C4;
+        color: #FFFFFF;
+        content: 'Z'; }
+      #primary #calendar .fc-event .fc-event-inner {
+        display: inline;
+        border-bottom: 1px dashed #DDDDDD;
+        padding-bottom: 1px; }
+        #primary #calendar .fc-event .fc-event-inner:hover {
+          color: #AAA; }
+      #primary #calendar .fc-event .fc-event-vert {
+        padding: 5px; }
+      #primary #calendar .fc-event .fc-event-bg {
+        background-color: #999999;
+        -webkit-border-radius: 3px;
+        border-radius: 3px;
+        padding: 5px; }
 
 #loading {
   position: fixed;
@@ -5209,31 +5333,3 @@ body * {
     font-size: 120px;
     color: #FFF;
     line-height: 250px; }
-
-.site_icon, .atnd, .doorkeeper, .connpass, .zusaar {
-  width: 8em;
-  height: 26px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
-  font-size: 14px;
-  line-height: 26px;
-  display: inline-block;
-  text-align: center;
-  margin-right: 10px;
-  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1); }
-
-.atnd {
-  background-color: #CC0033;
-  color: #FFFFFF; }
-
-.doorkeeper {
-  background-color: #79A1B2;
-  color: #FFFFFF; }
-
-.connpass {
-  background-color: #D84722;
-  color: #FFFFFF; }
-
-.zusaar {
-  background-color: #2071C4;
-  color: #FFFFFF; }

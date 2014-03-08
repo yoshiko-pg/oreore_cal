@@ -51,11 +51,22 @@ var event_api_wrapper = {
 					data = $.extend(data, this.service_setting[service].other_param);
 				}
 				data[this.service_setting[service].id_key] = ids[service];
+
+				var add_class = (function(service){
+					return function(data){
+						events = data.events || data.event
+						for(i=events.length-1;i>=0;i--){
+							events[i].service = service;
+						}
+					}
+				})(service);
+
 				ajaxlist.push($.ajax({
 					url: this.service_setting[service].url,
 					data: decodeURIComponent($.param(data)),
 					type: 'GET',
-					dataType: 'jsonp'
+					dataType: 'jsonp',
+					success: add_class
 				}));
 			}
 		}

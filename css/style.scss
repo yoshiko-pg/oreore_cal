@@ -79,12 +79,49 @@
  'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3',
  Meiryo, メイリオ, sans-serif;
 }
+
+@mixin site_label($size:26px){
+	width: 8em;
+	height: $size;
+	-webkit-border-radius: 3px;
+	        border-radius: 3px;
+	font-size: 14px;
+	line-height: $size;
+	display: inline-block;
+	text-align: center;
+	margin-right: 10px;
+	box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
+}
+@mixin site_icon{
+	@include site_label(18px);
+	width: 1.7em;
+	font-size: 12px;
+	margin-right: 3px;
+}
+@mixin atnd{
+	background-color: #CC0033;
+	color: #FFFFFF;
+}
+@mixin doorkeeper{
+	background-color: #79A1B2;
+	color: #FFFFFF;
+}
+@mixin connpass{
+	background-color: #D84722;
+	color: #FFFFFF;
+}
+@mixin zusaar{
+	background-color: #2071C4;
+	color: #FFFFFF;
+}
+
 ////////////////////////////////////////////////////////////////////////
 html, body{
 	@include ff;
 	margin: 0;
 	padding: 0;
 	color: #333333;
+	background: #FFF url('./bg.png') repeat left top;
 }
 body *{
 	@include ff;
@@ -150,6 +187,23 @@ $header_bgc: #94D4CC;
 			}
 			.fa-times{
 				color: #D9534F;
+			}
+
+			.atnd{
+				@include site_label;
+				@include atnd;
+			}
+			.doorkeeper{
+				@include site_label;
+				@include doorkeeper;
+			}
+			.connpass{
+				@include site_label;
+				@include connpass;
+			}
+			.zusaar{
+				@include site_label;
+				@include zusaar;
 			}
 		}
 		.where{
@@ -256,6 +310,10 @@ $header_bgc: #94D4CC;
 			float: left;
 		}
 
+		.fc-content{
+			background: #FFF;
+		}
+
 		th{
 			background-color: #C0C0C0;
 			color: #FFF;
@@ -265,6 +323,48 @@ $header_bgc: #94D4CC;
 			}
 			&.fc-sun{
 				background-color: #FF7F7F;
+			}
+		}
+
+		.fc-event{
+			background-color: transparent;
+			border: none;
+			color: #666;
+			cursor: pointer;
+			
+			&.atnd:before{
+				@include site_icon;
+				@include atnd;
+				content: 'A';
+			}
+			&.connpass:before{
+				@include site_icon;
+				@include connpass;
+				content: 'C';
+			}
+			&.zusaar:before{
+				@include site_icon;
+				@include zusaar;
+				content: 'Z';
+			}
+
+			.fc-event-inner{
+				display: inline;
+				border-bottom: 1px dashed #DDDDDD;
+				padding-bottom: 1px;
+				
+				&:hover{
+					color: #AAA;
+				}
+			}
+			.fc-event-vert{
+				padding: 5px;				
+			}
+			.fc-event-bg{
+				background-color: #999999;
+				-webkit-border-radius: 3px;
+				        border-radius: 3px;
+				padding: 5px;				
 			}
 		}
 
@@ -297,39 +397,3 @@ $header_bgc: #94D4CC;
 	}
 }
 
-
-///////////////////////////////////////////////////////////////////
-
-.site_icon{
-	$size: 26px;
-	width: 8em;
-	height: $size;
-	-webkit-border-radius: 3px;
-	        border-radius: 3px;
-	font-size: 14px;
-	line-height: $size;
-	display: inline-block;
-	text-align: center;
-	margin-right: 10px;
-	box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
-}
-.atnd{
-	@extend .site_icon;
-	background-color: #CC0033;
-	color: #FFFFFF;
-}
-.doorkeeper{
-	@extend .site_icon;
-	background-color: #79A1B2;
-	color: #FFFFFF;
-}
-.connpass{
-	@extend .site_icon;
-	background-color: #D84722;
-	color: #FFFFFF;
-}
-.zusaar{
-	@extend .site_icon;
-	background-color: #2071C4;
-	color: #FFFFFF;
-}
