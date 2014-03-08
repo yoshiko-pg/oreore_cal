@@ -96,6 +96,7 @@ $(function(){
 			agenda: 'H:mm{ - H:mm}'
 		},	
 		firstDay: 1,
+		firstHour: 9,
 		buttonText: {
 			prev: "<i class='fa fa-chevron-left'></i>",
 			next: "<i class='fa fa-chevron-right'></i>",
@@ -123,6 +124,11 @@ $(function(){
 		loading: function(bool) {
 			if (bool) $('#loading').show();
 			else $('#loading').hide();
+		},
+		dayClick: function(date, allDay, jsEvent, view) {
+			if (view.name !== 'agendaDay') {
+				$('#calendar').fullCalendar('changeView', 'agendaDay').fullCalendar('gotoDate', date.getFullYear(), date.getMonth(), date.getDate());
+			}
 		}
 	};
 
