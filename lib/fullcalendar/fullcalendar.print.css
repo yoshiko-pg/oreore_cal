@@ -32,6 +32,6 @@
 	
 /* Add
 -----------------------------------------------------*/
-#header{
+#header, #footer{
 	display: none !important;
 	}
