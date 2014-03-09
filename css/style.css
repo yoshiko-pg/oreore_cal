@@ -2377,6 +2377,13 @@ body * {
       color: #FFFFFF; }
   #header #first .where {
     margin-top: 20px; }
+  #header #recommend {
+    padding: 0; }
+    #header #recommend li {
+      list-style-type: none;
+      margin-bottom: 10px; }
+      #header #recommend li.fb {
+        padding-bottom: 5px; }
   #header #tab {
     position: absolute;
     right: 10%;

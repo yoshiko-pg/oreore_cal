@@ -206,7 +206,18 @@ $header_bgc: #94D4CC;
 			margin-top: 20px;
 		}
 	}
-	#second{
+
+	#recommend{
+		padding: 0;
+		
+		li{
+			list-style-type: none;
+			margin-bottom: 10px;
+			
+			&.fb{
+				padding-bottom: 5px;
+			}
+		}	
 	}
 
 	#tab{
