@@ -1,23 +1,30 @@
 #おれおれ勉強会カレンダー
-自分の勉強会参加予定をまとめて把握しよう！  
-ATND,Connpass,Zusaarの予定をまとめて見られる、おれおれ勉強会カレンダー
+ATND,connpass,Zusaarで入れた自分の予定をまとめて把握しよう！  
 
 ##使い方
-上部の「ID setting」を開いて、ATND・Connpass・Zusaarそれぞれ自分のIDを入力します。  
+上部の「ID setting」を開いて、ATND・connpass・Zusaarそれぞれ自分のIDを入力します。  
 （空欄のサービスがあっても大丈夫です。）  
 （IDがどこにあるかは、入力欄下のリンク「Where is my ID?」を参考にしてください。）  
 
 IDを入れたら、「view events」ボタンをクリックすると予定がまとめて表示されます。  
-気に入ったら、「save ID setting」ボタンを押すとIDをCookieに保存するので  
+気に入ったら、「save to Cookie」ボタンを押すとIDをCookieに保存するので  
 次回からページを開くだけで予定を確認することができます。  
 
 ##コードについて
-js/event_api_wrapper.js は単体で、ATND・Connpass・Zusaarからまとめて予定を取得するスクリプトとして使用できるように書きました。  
-get_events({atnd:'xxxxx', connpass:'xxxxx', zusaar:'xxxxx'}, callback, ['201402','201403']);
-の形で  
-・サービス名とIDを対にしたオブジェクト  
-・コールバック関数  
-・取得したいイベントの年月  
-を渡すと、callbackの第一引数に、イベントオブジェクトをまとめた配列を返します。  
+js/event_api_wrapper.jquery.js は ATND・connpass・Zusaarからまとめて予定を取得できるスクリプトとして使用できるように書きました。  
+```
+event_api_wrapper.get_events(
+	{atnd:'xxxxx', connpass:'xxxxx', zusaar:'xxxxx'}, 
+	function(events){ //... }, 
+	['201402','201403','201404']
+); 
+```
+の形で
 
-利用したい方がいましたら、ご自由にどうぞ。ヘッダーのコメントは残しておいてください。  
+* サービス名とIDを対にしたオブジェクト
+* コールバック関数
+* 取得したいイベントの年月（オプション）
+
+を渡すと、コールバック関数の第一引数に、イベントオブジェクトをまとめた配列を返します。
+
+ヘッダーコメントに詳しい使い方を書いていますので、利用したい方はご自由にどうぞ。  
