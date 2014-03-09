@@ -187,7 +187,7 @@ $(function(){
 			var cookie_edit = function(){
 				$.cookie($(this).attr('id'), $(this).val());
 			};
-			$('#save').removeClass('btn-success').addClass('btn-danger').text('delete ID setting');
+			$('#save').removeClass('btn-success').addClass('btn-danger').text('delete Cookie');
 
 		// Cookieを削除
 		}else{ 
@@ -195,7 +195,7 @@ $(function(){
 				$.removeCookie($(this).attr('id'));
 				$(this).val('');
 			};
-			$('#save').removeClass('btn-danger').addClass('btn-success').text('save ID setting');
+			$('#save').removeClass('btn-danger').addClass('btn-success').text('save to Cookie');
 		}
 
 		if(!unedit) $('#first .item :text').filter(notEmpty).each(cookie_edit);
