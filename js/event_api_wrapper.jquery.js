@@ -1,3 +1,19 @@
+/*!
+ * Event API wrapper (c) 2014 yoshiko (https://github.com/yoshiko-pg)
+ */
+
+/*
+ * event_api_wrapper.get_events(ids, callback, ym);
+ * 
+ * @param object	ids: {atnd:'xxxxx', connpass:'xxxxx', zusaar:'xxxxx'}
+ * @param function	callback: function(events){ ... }
+ * @param array		ym(option): ['201402','201403','201404']
+ * 
+ * サービス名がキー、IDが値の配列を引数で渡すと
+ * イベントをまとめてjson形式で取得し、events配列をcallbackに渡します。
+ * ymを配列（[yyyymm, yyyymm, yyyymm...]）で渡すと、その年月のイベントだけに絞り込みます。
+ */
+
 var event_api_wrapper = {
 
 	common_param: {
@@ -31,12 +47,7 @@ var event_api_wrapper = {
 		},
 	},
 
-	/**
-	 * サービス名がキー、IDが値の配列を引数で渡すと
-	 * イベントをまとめてjson形式で取得し、events配列をcallbackに渡します。
-	 * ymを配列（[yyyymm, yyyymm, yyyymm...]）で渡すと、
-	 * その年月のイベントだけに絞り込みます。
-	 */
+
 	get_events: function(ids, callback, ym){
 
 		ids = ids || {};
