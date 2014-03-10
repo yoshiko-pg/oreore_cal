@@ -34,7 +34,7 @@ $(function(){
 								'<p>場所：<a href="https://maps.google.com/maps?q='+e.address+'" target="_blank">' + e.address + ' ' + e.place + ' <i class="fa fa-external-link"></i></a></p>' +
 								'<p>' + e.catch + '</p>' + 
 								'<p><a href="#" class="desc_toggle"><i class="fa fa-plus-square-o"></i> 詳細を表示</a></p>' + 
-								'<div class="desc">' + e.description + '</div>' + 
+								'<div class="desc">' + marked(e.description) + '</div>' + 
 						   '</div>' +
 						   '<div class="modal-footer">' + 
 								'<button type="button" class="btn btn-default" data-dismiss="modal">Close</button> ' +
