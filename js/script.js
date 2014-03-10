@@ -228,7 +228,9 @@ $(function(){
 
 // modal用の日付フォーマット
 var popup_date = function(date){
-	if(typeof date !== 'Date') date = new Date(date);
+	if(typeof date !== 'object'){
+        date = new Date(date);
+    }
 	var y = date.getFullYear();
 	var m = date.getMonth() + 1;
 	var d = date.getDate();
