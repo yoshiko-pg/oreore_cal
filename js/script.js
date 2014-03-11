@@ -16,6 +16,16 @@ $(function(){
 			var events_length = events.length;
 			for(var i = 0; i < events.length; i++){
 				var e = events[i];
+				var add_gcal_url = 'http://www.google.com/calendar/event?' +
+					'action='	+ 'TEMPLATE' +
+					'&text='	+ encodeURIComponent(e.title)   +
+					'&details='	+ encodeURIComponent(e.event_url) +
+					'&location='+ encodeURIComponent(e.address)    +
+					'&dates='	+ getUTC(e.started_at)+'/'+getUTC(e.ended_at) +
+					'&trp='		+ 'false' +
+					'&sprop='	+ encodeURIComponent('http://yoshiko-pg.github.io/oreore_cal/') +
+					'&sprop='	+ 'name:oreore_cal';
+
 				formatted.push({
 					title: e.title,
 					start: e.started_at,
@@ -37,8 +47,9 @@ $(function(){
 								'<div class="desc">' + marked(e.description) + '</div>' + 
 						   '</div>' +
 						   '<div class="modal-footer">' + 
+								'<a href="'+add_gcal_url+'" target="_blank" class="btn btn-success">Add to Google calendar <i class="fa fa-calendar"></i></a>' +
+								'<a href="'+e.event_url+'" target="_blank" class="btn btn-primary">Open event page <i class="fa fa-external-link"></i></a>' +
 								'<button type="button" class="btn btn-default" data-dismiss="modal">Close</button> ' +
-								'<a href="'+e.event_url+'" target="_blank" class="btn btn-primary">Open event page <i class="fa fa-external-link"></i></button>' +
 							'</div>' + 
 							'</div>' + 
 							'</div>' + 
@@ -74,6 +85,22 @@ $(function(){
 			ym_array.push(ym_format(i));
 		}
 		return ym_array;
+	};
+
+	var zerofill = function(num){
+		return ('0'+num).slice(-2);
+	}
+
+	var getUTC = function(date_str){
+		var date = new Date(date_str);
+		return date.getUTCFullYear() +
+			zerofill(date.getUTCMonth()+1) +
+			zerofill(date.getUTCDate()) +
+			'T' +
+			zerofill(date.getUTCHours()) +
+			zerofill(date.getUTCMinutes()) +
+			zerofill(date.getUTCSeconds()) +
+			'Z';
 	};
 
 	var cal_option = {
