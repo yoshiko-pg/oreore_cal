@@ -8,7 +8,7 @@ ATND,connpass,Zusaarで入れた自分の予定をまとめて把握しよう！
 （IDがどこにあるかは、入力欄下のリンク「Where is my ID?」を参考にしてください。）  
 
 IDを入れたら、「view events」ボタンをクリックすると予定がまとめて表示されます。  
-気に入ったら、「save to Cookie」ボタンを押すとIDをCookieに保存するので  
+気に入ったら、「save ID setting」ボタンを押すとIDをlocalStorageに保存するので  
 次回からページを開くだけで予定を確認することができます。  
 
 ##コードについて
