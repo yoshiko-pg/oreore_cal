@@ -7,7 +7,7 @@ $(function(){
 
 		$('#first .item :text').each(function() {
 			var input_id = $(this).attr('id');
-			ids[input_id] = $(this).val() || $.cookie(input_id);
+			ids[input_id] = $(this).val() || localStorage[input_id] || $.cookie(input_id);
 		});
 
 		// 帰ってきたデータをfullcalendar.jsが受け取れる形にフォーマット
@@ -205,51 +205,52 @@ $(function(){
 	$('#view').click();
 	
 	// IDの保存/削除
-	var cookie_btn_toggle = function(flag, unedit){
+	var ls_btn_toggle = function(flag, unedit){
 
 		var notEmpty = function(){ return this.value.length !== 0; }
 
-		// Cookieをセット
+		// localStorageをセット
 		if(flag){ 
-			var cookie_edit = function(){
-				$.cookie($(this).attr('id'), $(this).val());
+			var ls_edit = function(){
+				localStorage[$(this).attr('id')] = $(this).val();
 			};
-			$('#save').removeClass('btn-success').addClass('btn-danger').text('delete Cookie');
+			$('#save').removeClass('btn-success').addClass('btn-danger').text('delete ID setting');
 
-		// Cookieを削除
+		// localStorageを削除
 		}else{ 
-			var cookie_edit = function(){
+			var ls_edit = function(){
+				localStorage.removeItem($(this).attr('id'));
 				$.removeCookie($(this).attr('id'));
 				$(this).val('');
 			};
-			$('#save').removeClass('btn-danger').addClass('btn-success').text('save to Cookie');
+			$('#save').removeClass('btn-danger').addClass('btn-success').text('save ID setting');
 		}
 
-		if(!unedit) $('#first .item :text').filter(notEmpty).each(cookie_edit);
+		if(!unedit) $('#first .item :text').filter(notEmpty).each(ls_edit);
 	}
 
 	$('#save').click(function(){
-		cookie_btn_toggle($(this).hasClass('btn-success'));
+		ls_btn_toggle($(this).hasClass('btn-success'));
 	});	
 
-	// Cookieがあれば入力して、ボタンをCookie削除に変更
-	var cookie_flag = false;
+	// localStorageかcookieがあれば入力して、ボタンを削除に変更
+	var ls_flag = false;
 	$('#first .item :text').each(function() {
-		var id = $.cookie($(this).attr('id'));
+		var id = localStorage[$(this).attr('id')] || $.cookie($(this).attr('id'));
 		if(id){
 			$(this).val(id);
-			cookie_flag = true;
+			ls_flag = true;
 		}
 		$(this).on('keydown', function(){
-			if($(this).val() !== $.cookie($(this).attr('id'))){
-				cookie_btn_toggle(false, true);
+			if($(this).val() !== localStorage[$(this).attr('id')]){
+				ls_btn_toggle(false, true);
 			}
 		})
 	});
-	cookie_btn_toggle(cookie_flag);
+	ls_btn_toggle(ls_flag);
 
-	// Cookieがなければ入力欄を表示
-	if(!cookie_flag) $('#tab').click();
+	// localStorageがなければ入力欄を表示
+	if(!ls_flag) $('#tab').click();
 		
 });
 
