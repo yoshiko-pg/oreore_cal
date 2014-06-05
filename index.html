@@ -1,135 +1,135 @@
 <!doctype html>
 <html lang="ja">
 <head>
-	<meta charset="UTF-8">
-	<title>おれおれ勉強会カレンダー</title>
-	<link href='./lib/fullcalendar/fullcalendar.css' rel='stylesheet' />
-	<link href='./lib/fullcalendar/fullcalendar.print.css' rel='stylesheet' media='print' />
-	<link href="./css/style.css" rel="stylesheet" type="text/css">
-	<script src='./lib/jquery/jquery.min.js'></script>
-	<script src='./lib/jquery.cookie.js'></script>
-	<script src='./lib/marked.js'></script>
-	<script src='./lib/bootstrap/js/bootstrap.min.js'></script>
-	<script src='./lib/fullcalendar/fullcalendar.min.js'></script>
-	<script src='./js/event_api_wrapper.jquery.js'></script>
-	<script src='./js/script.js'></script>
+  <meta charset="UTF-8">
+  <title>おれおれ勉強会カレンダー</title>
+  <link href='./lib/fullcalendar/fullcalendar.css' rel='stylesheet' />
+  <link href='./lib/fullcalendar/fullcalendar.print.css' rel='stylesheet' media='print' />
+  <link href="./css/style.css" rel="stylesheet" type="text/css">
+  <script src='./lib/jquery/jquery.min.js'></script>
+  <script src='./lib/jquery.cookie.js'></script>
+  <script src='./lib/marked.js'></script>
+  <script src='./lib/bootstrap/js/bootstrap.min.js'></script>
+  <script src='./lib/fullcalendar/fullcalendar.min.js'></script>
+  <script src='./js/event_api_wrapper.jquery.js'></script>
+  <script src='./js/script.js'></script>
 </head>
 <body>
-	<div id="fb-root"></div>
-	<script>(function(d, s, id) {
-	  var js, fjs = d.getElementsByTagName(s)[0];
-	  if (d.getElementById(id)) return;
-	  js = d.createElement(s); js.id = id;
-	  js.src = "//connect.facebook.net/ja_JP/all.js#xfbml=1";
-	  fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));</script>
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/ja_JP/all.js#xfbml=1";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
 
-	<div id="header">
-		<div id="first" class="w_wide">
-			<h2>1. Set your IDs</h2>
-			<div class="where">
-				<a href="#" data-toggle="modal" data-target="#where_is_my_id">Where is my ID?</a>
-			</div>
-			<div class="item">
-				<span class="atnd">ATND BETA</span>
-				<input type="text" name="atnd" id="atnd" value="" />
-				<i class="fa"></i>
-			</div>
-			<div class="item">
-				<span class="connpass">connpass</span>
-				<input type="text" name="connpass" id="connpass" value="" />
-				<i class="fa"></i>
-			</div>
-			<div class="item">
-				<span class="zusaar">Zusaar</span>
-				<input type="text" name="zusaar" id="zusaar" value="" />
-				<i class="fa"></i>
-			</div>
-		</div>
-		<div id="second" class="w_normal">
-			<h2>2. View events</h2>
-			<button id="view" class="btn btn-primary">view events</button>
-			<div id="get_event_result"></div>
-		</div>
-		<div id="third" class="w_normal">
-			<h2>3. Save ID setting</h2>
-			<button id="save" class="btn btn-success">save ID setting</button>
-			<div id="save_result"></div>
-		</div>
-		<div id="fourth" class="w_normal">
-			<h2>4. Recommend!</h2>
-			<ul id="recommend">
-				<li><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://yoshiko-pg.github.io/oreore_cal/" data-text="おれおれ勉強会カレンダー" data-via="yoshiko_pg">Tweet</a>
+  <div id="header">
+    <div id="first" class="w_wide">
+      <h2>1. Set your IDs</h2>
+      <div class="where">
+        <a href="#" data-toggle="modal" data-target="#where_is_my_id">Where is my ID?</a>
+      </div>
+      <div class="item">
+        <span class="atnd">ATND BETA</span>
+        <input type="text" name="atnd" id="atnd" value="" />
+        <i class="fa"></i>
+      </div>
+      <div class="item">
+        <span class="connpass">connpass</span>
+        <input type="text" name="connpass" id="connpass" value="" />
+        <i class="fa"></i>
+      </div>
+      <div class="item">
+        <span class="zusaar">Zusaar</span>
+        <input type="text" name="zusaar" id="zusaar" value="" />
+        <i class="fa"></i>
+      </div>
+    </div>
+    <div id="second" class="w_normal">
+      <h2>2. View events</h2>
+      <button id="view" class="btn btn-primary">view events</button>
+      <div id="get_event_result"></div>
+    </div>
+    <div id="third" class="w_normal">
+      <h2>3. Save ID setting</h2>
+      <button id="save" class="btn btn-success">save ID setting</button>
+      <div id="save_result"></div>
+    </div>
+    <div id="fourth" class="w_normal">
+      <h2>4. Recommend!</h2>
+      <ul id="recommend">
+        <li><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://yoshiko-pg.github.io/oreore_cal/" data-text="おれおれ勉強会カレンダー" data-via="yoshiko_pg">Tweet</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></li>
-				<li class="fb"><div class="fb-like" data-href="http://yoshiko-pg.github.io/oreore_cal/" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div></li>
-				<li><a href="http://b.hatena.ne.jp/entry/http://yoshiko-pg.github.io/oreore_cal/" class="hatena-bookmark-button" data-hatena-bookmark-title="おれおれ勉強会カレンダー" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script></li>
-				<li><iframe src="http://ghbtns.com/github-btn.html?user=yoshiko-pg&repo=oreore_cal&type=watch&count=true"
+        <li class="fb"><div class="fb-like" data-href="http://yoshiko-pg.github.io/oreore_cal/" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div></li>
+        <li><a href="http://b.hatena.ne.jp/entry/http://yoshiko-pg.github.io/oreore_cal/" class="hatena-bookmark-button" data-hatena-bookmark-title="おれおれ勉強会カレンダー" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script></li>
+        <li><iframe src="http://ghbtns.com/github-btn.html?user=yoshiko-pg&repo=oreore_cal&type=watch&count=true"
   allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe></li>
-			</ul>
-		</div>
+      </ul>
+    </div>
 
-		<div id="tab"><i class="fa fa-cog"></i>ID setting</div>
+    <div id="tab"><i class="fa fa-cog"></i>ID setting</div>
 
-	</div>
+  </div>
 
-	<div id="primary">
-		<h1><i class="fa fa-calendar-o"></i>おれおれ勉強会カレンダー</h1>
-		<p>各イベント開催支援サイトで自分が参加予定のイベントをまとめて見ることができます。<br /></p>
-		<div id='calendar'></div>
+  <div id="primary">
+    <h1><i class="fa fa-calendar-o"></i>おれおれ勉強会カレンダー</h1>
+    <p>各イベント開催支援サイトで自分が参加予定のイベントをまとめて見ることができます。<br /></p>
+    <div id='calendar'></div>
 
-		<h1>つくったひと</h1>
-		<p>
-			<img src="./img/my_icon.gif" alt="yoshiko" id="prof_img" /> 
-			<a href="http://profile.hatena.ne.jp/yoshiko_pg/" target="_blank">よしこ（yoshiko_pg）</a> /　
-			<a href="https://github.com/yoshiko-pg" target="_blank">github</a>　/　
-			<a href="http://yoshiko.hatenablog.jp/" target="_blank">hatena blog</a>　/　
-			<a href="https://twitter.com/yoshiko_pg" target="_blank">twitter</a>　/　
-			<a href="https://www.facebook.com/yoshida.maasa" target="_blank">facebook</a>
-		</p>
-	</div>
+    <h1>つくったひと</h1>
+    <p>
+      <img src="./img/my_icon.gif" alt="yoshiko" id="prof_img" /> 
+      <a href="http://profile.hatena.ne.jp/yoshiko_pg/" target="_blank">よしこ（yoshiko_pg）</a> /　
+      <a href="https://github.com/yoshiko-pg" target="_blank">github</a>　/　
+      <a href="http://yoshiko.hatenablog.jp/" target="_blank">hatena blog</a>　/　
+      <a href="https://twitter.com/yoshiko_pg" target="_blank">twitter</a>　/　
+      <a href="https://www.facebook.com/yoshida.maasa" target="_blank">facebook</a>
+    </p>
+  </div>
 
-	<div id="footer">
-		<p class="copyright">2014　yoshiko</p>
-		<p>&amp; Thanks for awesome libraries:<br />
-		<a href="http://jquery.com/" target="_blank">jQuery</a>　/　
-		<a href="http://arshaw.com/fullcalendar/" target="_blank">FullCalendar</a>　/　
-		<a href="https://github.com/carhartl/jquery-cookie" target="_blank">jquery.cookie</a>　/　
-		<a href="https://github.com/chjj/marked" target="_blank">marked</a>　/　
-		<a href="http://getbootstrap.com/" target="_blank">bootstrap</a>　/　
-		<a href="https://github.com/jlong/sass-bootstrap" target="_blank">sass-bootstrap</a>　/　
-		<a href="http://fortawesome.github.io/Font-Awesome/" target="_blank">Font Awesome</a>
-		</p>
-	</div>
+  <div id="footer">
+    <p class="copyright">2014　yoshiko</p>
+    <p>&amp; Thanks for awesome libraries:<br />
+    <a href="http://jquery.com/" target="_blank">jQuery</a>　/　
+    <a href="http://arshaw.com/fullcalendar/" target="_blank">FullCalendar</a>　/　
+    <a href="https://github.com/carhartl/jquery-cookie" target="_blank">jquery.cookie</a>　/　
+    <a href="https://github.com/chjj/marked" target="_blank">marked</a>　/　
+    <a href="http://getbootstrap.com/" target="_blank">bootstrap</a>　/　
+    <a href="https://github.com/jlong/sass-bootstrap" target="_blank">sass-bootstrap</a>　/　
+    <a href="http://fortawesome.github.io/Font-Awesome/" target="_blank">Font Awesome</a>
+    </p>
+  </div>
 
-	<div id="loading"><i class="fa fa-spinner fa-spin"></i></div>
+  <div id="loading"><i class="fa fa-spinner fa-spin"></i></div>
 
-	<div class="modal fade" id="where_is_my_id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h3 class="modal-title" id="myModalLabel">Where is my ID ?</h3>
-				</div>
-				<div class="modal-body">
-					<h4><a href="http://atnd.org/beta" target="_blank">ATND (BETA)</a></h4>
-					<div class="where_id_img">
-						<img src="./img/atnd.png" alt="http://atnd.org/users/[user_id]">
-					</div>
-					<h4><a href="http://connpass.com/" target="_blank">connpass</a></h4>
-					<div class="where_id_img">
-						<img src="./img/connpass.png" alt="http://connpass.com/user/[user_id]">
-					</div>
-					<h4><a href="http://www.zusaar.com/" target="_blank">Zusaar</a></h4>
-					<div class="where_id_img">
-						<img src="./img/zusaar.png" alt="http://www.zusaar.com/user/[user_id]">
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				</div>
-			</div>
-		</div>
-	</div>
+  <div class="modal fade" id="where_is_my_id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3 class="modal-title" id="myModalLabel">Where is my ID ?</h3>
+        </div>
+        <div class="modal-body">
+          <h4><a href="http://atnd.org/beta" target="_blank">ATND (BETA)</a></h4>
+          <div class="where_id_img">
+            <img src="./img/atnd.png" alt="http://atnd.org/users/[user_id]">
+          </div>
+          <h4><a href="http://connpass.com/" target="_blank">connpass</a></h4>
+          <div class="where_id_img">
+            <img src="./img/connpass.png" alt="http://connpass.com/user/[user_id]">
+          </div>
+          <h4><a href="http://www.zusaar.com/" target="_blank">Zusaar</a></h4>
+          <div class="where_id_img">
+            <img src="./img/zusaar.png" alt="http://www.zusaar.com/user/[user_id]">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </body>
 </html>

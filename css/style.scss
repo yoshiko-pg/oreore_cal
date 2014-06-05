@@ -54,395 +54,395 @@
 .lato{ font-family: 'Lato'; }
 ////////////////////////////////////////////////////////////////////////
 @mixin cf {
-	zoom: 1;
+  zoom: 1;
 
-	&:before,
-	&:after {
-		display: block;
-		height: 0;
-		visibility: hidden;
-		content: "\0020";
-	}
+  &:before,
+  &:after {
+    display: block;
+    height: 0;
+    visibility: hidden;
+    content: "\0020";
+  }
 
-	&:after {
-		clear: both;
-	}
+  &:after {
+    clear: both;
+  }
 }
 .cf{ @include cf; }
 @mixin ff{
-	font-family: 'Lato', 'Lucida Grande',
+  font-family: 'Lato', 'Lucida Grande',
  'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3',
  Meiryo, メイリオ, sans-serif;
 }
 
 @mixin site_label($size:26px){
-	width: 8em;
-	height: $size;
-	-webkit-border-radius: 3px;
-	        border-radius: 3px;
-	font-size: 14px;
-	line-height: $size;
-	display: inline-block;
-	text-align: center;
-	margin-right: 10px;
-	box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
+  width: 8em;
+  height: $size;
+  -webkit-border-radius: 3px;
+          border-radius: 3px;
+  font-size: 14px;
+  line-height: $size;
+  display: inline-block;
+  text-align: center;
+  margin-right: 10px;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
 }
 @mixin site_icon{
-	@include site_label(18px);
-	width: 1.7em;
-	font-size: 12px;
-	margin-right: 3px;
+  @include site_label(18px);
+  width: 1.7em;
+  font-size: 12px;
+  margin-right: 3px;
 }
 @mixin atnd{
-	background-color: #CC0033;
-	color: #FFFFFF;
+  background-color: #CC0033;
+  color: #FFFFFF;
 }
 @mixin doorkeeper{
-	background-color: #79A1B2;
-	color: #FFFFFF;
+  background-color: #79A1B2;
+  color: #FFFFFF;
 }
 @mixin connpass{
-	background-color: #D84722;
-	color: #FFFFFF;
+  background-color: #D84722;
+  color: #FFFFFF;
 }
 @mixin zusaar{
-	background-color: #2071C4;
-	color: #FFFFFF;
+  background-color: #2071C4;
+  color: #FFFFFF;
 }
 
 ////////////////////////////////////////////////////////////////////////
 html, body{
-	@include ff;
-	margin: 0;
-	padding: 0;
-	color: #333333;
-	background: #FFF url('../img/bg.png') repeat left top;
+  @include ff;
+  margin: 0;
+  padding: 0;
+  color: #333333;
+  background: #FFF url('../img/bg.png') repeat left top;
 }
 body *{
-	@include ff;
+  @include ff;
 }
 
 $header_bgc: #94D4CC;
 
 #header{
-	$header_height: 240px;
-	$tab_height: 30px;
+  $header_height: 240px;
+  $tab_height: 30px;
 
-	@include cf;
-	width: 100%;
-	height: $header_height;
-	margin-top: 0 - $header_height + 5px;
-	margin-bottom: $tab_height;
-	padding: 0 60px;
-	background-color: $header_bgc;
-	position: relative;
-	color: #FFF;
-	
-	&.open{
-		margin-top: 0;
-	}
-	
-	h2{
-		text-shadow: 2px 2px 0 rgba(0,0,0,0.1);
-		font-size: 24px;
-		margin-bottom: 20px;
-	}
+  @include cf;
+  width: 100%;
+  height: $header_height;
+  margin-top: 0 - $header_height + 5px;
+  margin-bottom: $tab_height;
+  padding: 0 60px;
+  background-color: $header_bgc;
+  position: relative;
+  color: #FFF;
+  
+  &.open{
+    margin-top: 0;
+  }
+  
+  h2{
+    text-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
 
-	button{
-		margin-bottom: 15px;
-	}
-	
-	.grid_in_header{
-		float: left;
-	}
-	.w_wide{
-		@extend .grid_in_header;
-		width: 37%;
-	}
-	.w_normal{
-		@extend .grid_in_header;
-		width: 21%;
-	}
-	
-	#first{
-		
-		.item{
-			margin: 10px 0;
-			
-			input[type=text]{
-				width: 160px;
-			}
+  button{
+    margin-bottom: 15px;
+  }
+  
+  .grid_in_header{
+    float: left;
+  }
+  .w_wide{
+    @extend .grid_in_header;
+    width: 37%;
+  }
+  .w_normal{
+    @extend .grid_in_header;
+    width: 21%;
+  }
+  
+  #first{
+    
+    .item{
+      margin: 10px 0;
+      
+      input[type=text]{
+        width: 160px;
+      }
 
-			i{
-				margin-left: 5px;
-				text-shadow: 1px 1px 0 rgba(255,255,255,0.3);
-			}
-			.fa-check{
-				color: #5CB85C;
-			}
-			.fa-times{
-				color: #D9534F;
-			}
+      i{
+        margin-left: 5px;
+        text-shadow: 1px 1px 0 rgba(255,255,255,0.3);
+      }
+      .fa-check{
+        color: #5CB85C;
+      }
+      .fa-times{
+        color: #D9534F;
+      }
 
-			.atnd{
-				@include site_label;
-				@include atnd;
-			}
-			.doorkeeper{
-				@include site_label;
-				@include doorkeeper;
-			}
-			.connpass{
-				@include site_label;
-				@include connpass;
-			}
-			.zusaar{
-				@include site_label;
-				@include zusaar;
-			}
-		}
-		.where{
-			@extend .item;
-			margin-bottom: 20px;
-		}
-	}
+      .atnd{
+        @include site_label;
+        @include atnd;
+      }
+      .doorkeeper{
+        @include site_label;
+        @include doorkeeper;
+      }
+      .connpass{
+        @include site_label;
+        @include connpass;
+      }
+      .zusaar{
+        @include site_label;
+        @include zusaar;
+      }
+    }
+    .where{
+      @extend .item;
+      margin-bottom: 20px;
+    }
+  }
 
-	#recommend{
-		padding: 0;
-		
-		li{
-			list-style-type: none;
-			margin-bottom: 10px;
-			
-			&.fb{
-				padding-bottom: 5px;
-			}
-		}	
-	}
+  #recommend{
+    padding: 0;
+    
+    li{
+      list-style-type: none;
+      margin-bottom: 10px;
+      
+      &.fb{
+        padding-bottom: 5px;
+      }
+    } 
+  }
 
-	#tab{
-		$radius: 7px;
-		position: absolute;
-		right: 10%;
-		bottom: -$tab_height;
-		width: 200px;
-		height: $tab_height;
-		background-color: $header_bgc;
-		cursor: pointer;
-		-webkit-border-radius: 0 0 $radius $radius;
-		        border-radius: 0 0 $radius $radius;
-		text-align: center;
-		line-height: $tab_height - 2px;
-		-webkit-box-shadow: 0 2px 0 rgba(0,0,0,0.15);
-		        box-shadow: 0 2px 0 rgba(0,0,0,0.15);
-		
-		i{
-			margin-right: 5px;
-		}
-	}
+  #tab{
+    $radius: 7px;
+    position: absolute;
+    right: 10%;
+    bottom: -$tab_height;
+    width: 200px;
+    height: $tab_height;
+    background-color: $header_bgc;
+    cursor: pointer;
+    -webkit-border-radius: 0 0 $radius $radius;
+            border-radius: 0 0 $radius $radius;
+    text-align: center;
+    line-height: $tab_height - 2px;
+    -webkit-box-shadow: 0 2px 0 rgba(0,0,0,0.15);
+            box-shadow: 0 2px 0 rgba(0,0,0,0.15);
+    
+    i{
+      margin-right: 5px;
+    }
+  }
 
-	#where_id{
-		$height: 300px;
-		width: 80%;
-		height: $height;
-		padding: 10px;
-		position: absolute;
-		left: 5%;
-		bottom: -$height;
-		background-color: #FFF;
-		border: 1px solid #666;
-		z-index: 10;
-		display: none;
-		
-		h2{
-			color: $header_bgc;
-		}
-	}
+  #where_id{
+    $height: 300px;
+    width: 80%;
+    height: $height;
+    padding: 10px;
+    position: absolute;
+    left: 5%;
+    bottom: -$height;
+    background-color: #FFF;
+    border: 1px solid #666;
+    z-index: 10;
+    display: none;
+    
+    h2{
+      color: $header_bgc;
+    }
+  }
 }
 
 #primary{
-	width:900px;
-	margin: 0px auto;
-	
-	h1{
-		@include ff;
-		font-size: 24px;
-		color: #555555;
-		
-		i{
-			color: $header_bgc;
-			margin-right: 12px;
-		}
-	}
-	
-	#calendar {
-		width: 100%;
-		margin-top: 40px;
-		
-		h2{
-			@extend .lato;
-			font-size: 26px;
-			color: $header_bgc;
-			font-weight: bold;
-		}
+  width:900px;
+  margin: 0px auto;
+  
+  h1{
+    @include ff;
+    font-size: 24px;
+    color: #555555;
+    
+    i{
+      color: $header_bgc;
+      margin-right: 12px;
+    }
+  }
+  
+  #calendar {
+    width: 100%;
+    margin-top: 40px;
+    
+    h2{
+      @extend .lato;
+      font-size: 26px;
+      color: $header_bgc;
+      font-weight: bold;
+    }
 
-		.fc-header{
-			margin: 20px 0;
+    .fc-header{
+      margin: 20px 0;
 
-			td{
-				vertical-align: middle;  
-			}
+      td{
+        vertical-align: middle;  
+      }
 
-			.fa{
-				color: #777777;
-			}
-		}
-		
-		.fc-button{
-			@extend .btn;
-			height: auto;
-		}
-		.fc-state-default{
-			@extend .btn-default;
-		}
-		.fc-corner-left{
-		}
-		.fc-state-active{
-			@extend .active;
-		}
+      .fa{
+        color: #777777;
+      }
+    }
+    
+    .fc-button{
+      @extend .btn;
+      height: auto;
+    }
+    .fc-state-default{
+      @extend .btn-default;
+    }
+    .fc-corner-left{
+    }
+    .fc-state-active{
+      @extend .active;
+    }
 
-		.fc-grid .fc-day-number{
-			padding: 2px 6px;
-			float: left;
-		}
+    .fc-grid .fc-day-number{
+      padding: 2px 6px;
+      float: left;
+    }
 
-		.fc-content{
-			background: #FFF;
-		}
+    .fc-content{
+      background: #FFF;
+    }
 
-		th{
-			background-color: #C0C0C0;
-			color: #FFF;
-			
-			&.fc-sat{
-				background-color: #89B6FF;
-			}
-			&.fc-sun{
-				background-color: #FF7F7F;
-			}
-		}
+    th{
+      background-color: #C0C0C0;
+      color: #FFF;
+      
+      &.fc-sat{
+        background-color: #89B6FF;
+      }
+      &.fc-sun{
+        background-color: #FF7F7F;
+      }
+    }
 
-		.fc-event{
-			background-color: transparent;
-			border: none;
-			color: #666;
-			cursor: pointer;
-			
-			&.atnd:before{
-				@include site_icon;
-				@include atnd;
-				content: 'A';
-			}
-			&.connpass:before{
-				@include site_icon;
-				@include connpass;
-				content: 'C';
-			}
-			&.zusaar:before{
-				@include site_icon;
-				@include zusaar;
-				content: 'Z';
-			}
+    .fc-event{
+      background-color: transparent;
+      border: none;
+      color: #666;
+      cursor: pointer;
+      
+      &.atnd:before{
+        @include site_icon;
+        @include atnd;
+        content: 'A';
+      }
+      &.connpass:before{
+        @include site_icon;
+        @include connpass;
+        content: 'C';
+      }
+      &.zusaar:before{
+        @include site_icon;
+        @include zusaar;
+        content: 'Z';
+      }
 
-			.fc-event-inner{
-				display: inline;
-				border-bottom: 1px dashed #DDDDDD;
-				padding-bottom: 1px;
-				
-				&:hover{
-					color: #AAA;
-				}
-			}
-			.fc-event-vert{
-				padding: 5px;				
-			}
-			.fc-event-bg{
-				background-color: #999999;
-				-webkit-border-radius: 3px;
-				        border-radius: 3px;
-				padding: 5px;				
-			}
-		}
+      .fc-event-inner{
+        display: inline;
+        border-bottom: 1px dashed #DDDDDD;
+        padding-bottom: 1px;
+        
+        &:hover{
+          color: #AAA;
+        }
+      }
+      .fc-event-vert{
+        padding: 5px;       
+      }
+      .fc-event-bg{
+        background-color: #999999;
+        -webkit-border-radius: 3px;
+                border-radius: 3px;
+        padding: 5px;       
+      }
+    }
 
-	}
+  }
 }
 
 #prof_img{
-	width: 16px;
-	margin-right: 5px;
+  width: 16px;
+  margin-right: 5px;
 }
 
 #footer{
-	margin-top: 50px;
-	background-color: $header_bgc;
-	padding: 30px;
-	text-align: center;
-	p{
-		color: #FFF;
-		line-height: 2;
-		&.copyright{
-			margin-bottom: 15px;
-		}
-	}
+  margin-top: 50px;
+  background-color: $header_bgc;
+  padding: 30px;
+  text-align: center;
+  p{
+    color: #FFF;
+    line-height: 2;
+    &.copyright{
+      margin-bottom: 15px;
+    }
+  }
 }
 
 #loading{
-	$w: 300px;
-	$h: 250px;
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	width: $w;
-	height: $h;
-	margin:{
-		top: -$h / 2;
-		left: -$w / 2;
-	}
-	background-color: #888888;
-	text-align: center;
-	display: none;
-	-webkit-border-radius: 10%;
-	        border-radius: 10%;
-	opacity: 0.8;
-	
-	i{
-		font-size: 120px;
-		color: #FFF;
-		line-height: $h;
-	}
+  $w: 300px;
+  $h: 250px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: $w;
+  height: $h;
+  margin:{
+    top: -$h / 2;
+    left: -$w / 2;
+  }
+  background-color: #888888;
+  text-align: center;
+  display: none;
+  -webkit-border-radius: 10%;
+          border-radius: 10%;
+  opacity: 0.8;
+  
+  i{
+    font-size: 120px;
+    color: #FFF;
+    line-height: $h;
+  }
 }
 
 #where_is_my_id{
-	
-	h4{
-		font-size: 20px;
-		margin: 15px 10px;
-	}
+  
+  h4{
+    font-size: 20px;
+    margin: 15px 10px;
+  }
 
-	.where_id_img{
-		border: 1px solid #DDDDDD;
-		margin-bottom: 30px;
-	}
+  .where_id_img{
+    border: 1px solid #DDDDDD;
+    margin-bottom: 30px;
+  }
 }
 
 .modal-lg{
-	width: 900px;
+  width: 900px;
 }
 
 .desc{
-	display: none;
-	
-	&.disp{
-		display: block;
-	}
+  display: none;
+  
+  &.disp{
+    display: block;
+  }
 }
