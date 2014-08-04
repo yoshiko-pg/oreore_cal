@@ -67,6 +67,9 @@ var event_api_wrapper = {
           return function(data){
             events = data.events || data.event
             for(i=events.length-1;i>=0;i--){
+                if(service == 'atnd'){
+                    events[i] = events[i].event;
+                }
               events[i].service = service;
             }
           }
